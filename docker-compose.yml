@@ -1,17 +1,11 @@
 services:
   web:
     build: .
-    command: gunicorn -b 0.0.0.0:8000 todosapp.wsgi:application
-    depends_on:
-      - postgres
+    command: python atabekdemurtaza/manage.py runserver 0.0.0.0:8000
+    restart: always
     volumes:
-      - .:/usr/src/app
+      – .:/code
     ports:
-      - "8000:8000"
+      – "8000:8000"
     environment:
-      DATABASE_URL: postgres://todoapp@postgres/todos
-  postgres:
-    image: postgres:9.6.2-alpine
-    environment:
-      POSTGRES_USER: todoapp
-      POSTGRES_DB: todos
+      – DJANGO_SETTINGS_MODULE=config.settings.prod
