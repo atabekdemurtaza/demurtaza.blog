@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 
-class MovieList(APIView):
+class WatchListAPIView(APIView):
 
     def get(self, request):
         movies = Movie.objects.all()
@@ -21,7 +21,7 @@ class MovieList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class MovieDetail(APIView):
+class WatchDetailAPIView(APIView):
 
     def get(self, request, lookup):
         if lookup.isdigit():

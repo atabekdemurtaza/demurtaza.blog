@@ -1,6 +1,6 @@
 from django.urls import path
 # from .fbv_views import movie_list, movie_detail
-from .cbv_views import MovieList, MovieDetail
+from .cbv_views import WatchDetailAPIView, WatchListAPIView
 
 
 """# Function-based-views
@@ -13,10 +13,10 @@ urlpatterns = [
 urlpatterns = [
     path(
         route='list/',
-        view=MovieList.as_view(),
+        view=WatchListAPIView.as_view(),
         name='movie-list'),
     path(
         route='list/<lookup>/',
-        view=MovieDetail.as_view(),
+        view=WatchDetailAPIView.as_view(),
         name='movie-detail')
 ]
