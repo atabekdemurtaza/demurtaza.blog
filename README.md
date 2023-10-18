@@ -23,6 +23,27 @@ For setup, install these files
         pip install -r requirements/prod  # for prod
 
 
+# How to Use the API
+Here's how you can use the API provided by this project:
+
+1.**Movie List**: Retrieve a list of movies.
+
+* Endpoint: /list/
+* Method: GET
+
+2.**Movie Detail**: Retrieve details of a specific movie.
+
+* Endpoint: /list/<lookup>/
+* Method: GET
+
+3.**Stream List**: Retrieve a list of streams.
+
+* Endpoint: /stream/
+* Method: GET
+
+To interact with the application, make API requests using the provided endpoints. For example, you can use a tool like curl or a web browser to access the endpoints and retrieve data. Here's an example of how to use curl to make a GET request for the Movie List:
+
+        curl -X GET http://your-api-url/list/
 
 
 ## Author
