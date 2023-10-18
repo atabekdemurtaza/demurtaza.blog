@@ -43,8 +43,11 @@ Here's how you can use the API provided by this project:
 
 To interact with the application, make API requests using the provided endpoints. For example, you can use a tool like curl or a web browser to access the endpoints and retrieve data. Here's an example of how to use curl to make a GET request for the Movie List:
 
-        curl -X GET http://your-api-url/list/
+        curl -X GET http://127.0.0.1:8000/list/
 
+or 
+
+        curl -X GET https://customdomain.com/list/
 
 ## Author
 
