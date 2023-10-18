@@ -1,17 +1,23 @@
 from rest_framework import serializers
-from movies.models import Movie
+from movies.models import MovieList, StreamPlatform
+
+
+class StreamPlatFormSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StreamPlatform
+        fields = '__all__'
 
 
 # Model Serializer
-class MovieSerializer(serializers.ModelSerializer):
+class WatchListSerializer(serializers.ModelSerializer):
     len_name = serializers.SerializerMethodField()
 
     class Meta:
-        model = Movie
+        model = MovieList
         fields = '__all__'
 
     def get_len_name(self, object):
-        return len(object.name)
+        return len(object.title)
 
     def validate(self, value):
         if 'name' in value and 'description' in value:

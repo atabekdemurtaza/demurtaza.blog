@@ -2,11 +2,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import RedirectView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('movies/', include('movies.api.urls')),
-    path('rosetta/', include('rosetta.urls')),
+    path(route='jet/', view=include('jet.urls', 'jet')),
+    path(route='admin/', view=admin.site.urls),
+    path(route='movies/', view=include('movies.api.urls')),
+    path(route='rosetta/', view=include('rosetta.urls')),
+    path('', RedirectView.as_view(url='/movies/list', permanent=False)),
 ]
 
 if settings.DEBUG:
