@@ -26,6 +26,14 @@ class MovieList(models.Model):
     )
     title = models.CharField(_('name'), max_length=100, blank=True, null=True)
     storyline = models.TextField(_('description'), blank=True, null=True)
+    platform = models.ForeignKey(
+        to=StreamPlatform,
+        verbose_name=_('platform'),
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE,
+        related_name='watchlist'
+    )
     active = models.BooleanField(
         _('active'),
         default=True,
@@ -57,8 +65,6 @@ class MovieList(models.Model):
         User,
         related_name='acted_in_movies',
         verbose_name=_('cast'),
-        blank=True,
-        null=True
     )
     created = models.DateTimeField(
         _('created'),

@@ -2,15 +2,11 @@ from rest_framework import serializers
 from movies.models import MovieList, StreamPlatform
 
 
-class StreamPlatFormSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = StreamPlatform
-        fields = '__all__'
-
-
 # Model Serializer
 class WatchListSerializer(serializers.ModelSerializer):
     len_name = serializers.SerializerMethodField()
+    cast = serializers.StringRelatedField(many=True)
+    platform = serializers.StringRelatedField()
 
     class Meta:
         model = MovieList
@@ -32,6 +28,16 @@ class WatchListSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 detail='Name is too short.'
             )
+
+
+class StreamPlatFormSerializer(serializers.ModelSerializer):
+
+    watchlist = WatchListSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = StreamPlatform
+        fields = '__all__'
+
 
 # Serializer 14.03.2023
     """
