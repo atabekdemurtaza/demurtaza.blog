@@ -12,8 +12,8 @@ class StreamPlatform(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = 'Streams'
-        verbose_name = 'stream'
+        verbose_name_plural = 'Stream Platforms'
+        verbose_name = 'Stream Platform'
 
 
 class MovieList(models.Model):
@@ -85,3 +85,31 @@ class MovieList(models.Model):
         ordering = ['-id']
         verbose_name_plural = 'Movies'
         verbose_name = 'movie'
+
+
+class Review(models.Model):
+    rating = models.PositiveIntegerField(
+        _('rating'),
+    )
+    description = models.TextField(
+        _('description'),
+        blank=True,
+        null=True
+    )
+    created = models.DateTimeField(
+        _('created'),
+        auto_now_add=True
+    )
+    updated = models.DateTimeField(
+        _('updated'),
+        auto_now=True
+    )
+    active = models.BooleanField(_('active'), default=True)
+    watchlist = models.ForeignKey(
+        to=MovieList,
+        on_delete=models.CASCADE,
+        related_name='reviews'
+    )
+
+    def __str__(self) -> str:
+        return f'{self.watchlist.title} with {self.rating}'

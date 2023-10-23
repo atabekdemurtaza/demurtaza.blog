@@ -11,11 +11,22 @@ class WatchListAPIView(APIView):
 
     def get(self, request):
         movies = MovieList.objects.all()
-        serializer = WatchListSerializer(movies, many=True)
+        serializer = WatchListSerializer(
+            instance=movies,
+            many=True,
+            context={
+                'request': request
+            }
+        )
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        serializer = WatchListSerializer(data=request.data)
+        serializer = WatchListSerializer(
+            data=request.data,
+            context={
+                'request': request
+            }
+        )
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -31,7 +42,12 @@ class WatchDetailAPIView(APIView):
             else:
                 lookup = lookup.replace('-', '')
                 movie = get_object_or_404(klass=MovieList, title=lookup)
-            serializer = WatchListSerializer(movie)
+            serializer = WatchListSerializer(
+                instance=movie,
+                context={
+                    'request': request
+                }
+            )
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Http404:
             return Response(
@@ -47,7 +63,13 @@ class WatchDetailAPIView(APIView):
         else:
             movie = get_object_or_404(klass=MovieList, title=lookup)
 
-        serializer = WatchListSerializer(movie, data=request.data)
+        serializer = WatchListSerializer(
+            instance=movie,
+            data=request.data,
+            context={
+                'request': request
+            }
+        )
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -69,7 +91,10 @@ class StreamListAPIView(APIView):
         platform = StreamPlatform.objects.all()
         serializer = StreamPlatFormSerializer(
             instance=platform,
-            many=True
+            many=True,
+            context={
+                'request': request
+            }
         )
         return Response(
             data=serializer.data,
@@ -77,7 +102,12 @@ class StreamListAPIView(APIView):
         )
 
     def post(self, request):
-        serializer = StreamPlatFormSerializer(data=request.data)
+        serializer = StreamPlatFormSerializer(
+            data=request.data,
+            request={
+                'request': request
+            }
+        )
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -91,7 +121,12 @@ class StreamDetailAPIView(APIView):
             stream = get_object_or_404(klass=StreamPlatform, id=lookup)
         else:
             stream = get_object_or_404(klass=StreamPlatform, name=lookup)
-        serializer = StreamPlatFormSerializer(stream)
+        serializer = StreamPlatFormSerializer(
+            instance=stream,
+            context={
+                'request': request
+            }
+        )
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, lookup):
@@ -100,7 +135,13 @@ class StreamDetailAPIView(APIView):
         else:
             stream = get_object_or_404(klass=StreamPlatform, name=lookup)
 
-        serializer = StreamPlatFormSerializer(stream, data=request.data)
+        serializer = StreamPlatFormSerializer(
+            istance=stream,
+            data=request.data,
+            context={
+                'request': request
+            }
+        )
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
