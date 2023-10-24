@@ -63,3 +63,6 @@ or
 ## Logo
 ![Logo](atabekdemurtaza.jpg)
 
+## Database scheme
+![Database scheme](graph.png)
+
