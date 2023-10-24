@@ -165,7 +165,7 @@ class APIInfoView(APIView):
             'endpoints': [
                 {'name': 'Watch list', 'url': '/watch/list/'},
                 {'name': 'Watch stream', 'url': '/watch/stream/'},
-                # Add more endpoints as needed
+                {'name': 'Watch review', 'url': '/watch/review'}
             ],
         }
         return Response(api_info)
