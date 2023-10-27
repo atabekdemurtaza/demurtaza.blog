@@ -175,3 +175,5 @@ JET_THEMES = [
         'title': 'Light Gray'
     }
 ]
+
+# AUTH_USER_MODEL = 'movies.Review'

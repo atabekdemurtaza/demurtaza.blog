@@ -72,11 +72,8 @@ or
 
 [MIT](LICENSE)
 
-
-
-## Logo
-![Logo](atabekdemurtaza.jpg)
-
 ## Database scheme
 ![Database scheme](graph.png)
 
+## Logo
+![Logo](atabekdemurtaza.jpg)

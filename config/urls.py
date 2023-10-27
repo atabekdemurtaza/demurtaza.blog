@@ -17,6 +17,10 @@ urlpatterns = [
         view=RedirectView.as_view(url='/'),
         name='movies-root-redirect'
     ),
+    path(
+        route='api-auth/',
+        view=include('rest_framework.urls')
+    )
 ]
 
 if settings.DEBUG:
