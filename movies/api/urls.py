@@ -2,7 +2,7 @@ from django.urls import path
 # from .fbv_views import movie_list, movie_detail
 from .cbv_views import WatchDetailAPIView, WatchListAPIView
 from .cbv_views import StreamListAPIView, StreamDetailAPIView
-from .mixins.views import ReviewList, ReviewRetrieve
+from .mixins.views import ReviewList, ReviewRetrieve, ReviewCreate
 
 
 """# Function-based-views
@@ -32,13 +32,18 @@ urlpatterns = [
         name='stream-detail'
     ),
     path(
-        route='review/',
+        route='list/<lookup>/review/',
         view=ReviewList.as_view(),
         name='review-list'
     ),
     path(
-        route='review/<int:pk>/',
+        route='list/<lookup>/review/<int:pk>/',
         view=ReviewRetrieve.as_view(),
         name='review-retrieve'
-    )
+    ),
+    path(
+        route='list/<lookup>/create/',
+        view=ReviewCreate.as_view(),
+        name='review-create'
+    ),
 ]

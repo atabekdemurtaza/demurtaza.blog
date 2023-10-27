@@ -1,14 +1,9 @@
 from rest_framework import generics
-from rest_framework import mixins
 from movies.models import Review
 from movies.api.serializers import ReviewSerializer
 
 
-class ReviewList(
-    mixins.ListModelMixin,
-    mixins.CreateModelMixin,
-    generics.GenericAPIView
-):
+class ReviewList(generics.ListAPIView):
 
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
@@ -16,16 +11,12 @@ class ReviewList(
     def get(self, request, *args, **kwargs):
         return self.list(request=request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
-        return self.create(request=request, *args, **kwargs)
+    # def get_queryset(self):
+    #     pk = self.kwargs['pk']
+    #     return Review.objects.filter(watchlist=pk)
 
 
-class ReviewRetrieve(
-    mixins.RetrieveModelMixin,
-    mixins.UpdateModelMixin,
-    mixins.DestroyModelMixin,
-    generics.GenericAPIView
-):
+class ReviewRetrieve(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
@@ -38,3 +29,11 @@ class ReviewRetrieve(
 
     def destroy(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+
+
+class ReviewCreate(generics.CreateAPIView):
+
+    serializer_class = ReviewSerializer
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)

@@ -92,9 +92,6 @@ class StreamListAPIView(APIView):
         serializer = StreamPlatFormSerializer(
             instance=platform,
             many=True,
-            context={
-                'request': request
-            }
         )
         return Response(
             data=serializer.data,
@@ -104,9 +101,6 @@ class StreamListAPIView(APIView):
     def post(self, request):
         serializer = StreamPlatFormSerializer(
             data=request.data,
-            request={
-                'request': request
-            }
         )
         if serializer.is_valid():
             serializer.save()
@@ -136,7 +130,7 @@ class StreamDetailAPIView(APIView):
             stream = get_object_or_404(klass=StreamPlatform, name=lookup)
 
         serializer = StreamPlatFormSerializer(
-            istance=stream,
+            instance=stream,
             data=request.data,
             context={
                 'request': request

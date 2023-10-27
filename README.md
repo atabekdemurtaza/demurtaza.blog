@@ -26,20 +26,32 @@ For setup, install these files
 # How to Use the API
 Here's how you can use the API provided by this project:
 
-1.**Movie List**: Retrieve a list of movies.
+1.**Watch List**: Retrieve a list of movies.
 
-* Endpoint: /list/
+* Endpoint: /watch/list/
 * Method: GET
 
-2.**Movie Detail**: Retrieve details of a specific movie.
+2.**Watch Retrieve**: Retrieve details of a specific movie.
 
-* Endpoint: /list/<lookup>/
+* Endpoint: /watch/list/<lookup>/
 * Method: GET
+
+* Endpoint: /watch/list/<lookup>/
+* Methods: POST, DELETE, PUT 
 
 3.**Stream List**: Retrieve a list of streams.
 
-* Endpoint: /stream/
+* Endpoint: /watch/stream/
 * Method: GET
+
+4.**Stream Retrieve**: Retrieve a list of streams.
+
+* Endpoint: /watch/stream/<pk>/
+* Method: GET
+
+* Endpoint: /watch/stream/<pk>/
+* Methods: POST, DELETE, PUT
+
 
 To interact with the application, make API requests using the provided endpoints. For example, you can use a tool like curl or a web browser to access the endpoints and retrieve data. Here's an example of how to use curl to make a GET request for the Movie List:
 
@@ -48,6 +60,8 @@ To interact with the application, make API requests using the provided endpoints
 or 
 
         curl -X GET https://customdomain.com/list/
+
+
 
 ## Author
 
