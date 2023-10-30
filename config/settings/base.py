@@ -177,3 +177,5 @@ JET_THEMES = [
 ]
 
 # AUTH_USER_MODEL = 'movies.Review'
+
+LOGIN_REDIRECT_URL = ''
