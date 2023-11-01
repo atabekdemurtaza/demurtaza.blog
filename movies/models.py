@@ -66,6 +66,17 @@ class MovieList(models.Model):
         related_name='acted_in_movies',
         verbose_name=_('cast'),
     )
+    avg_rating = models.FloatField(
+        _('average rating'),
+        default=0,
+        blank=True,
+        null=True)
+    number_rating = models.IntegerField(
+        default=0,
+        blank=True,
+        null=True,
+        verbose_name=_('number of rating')
+    )
     created = models.DateTimeField(
         _('created'),
         auto_now_add=True,

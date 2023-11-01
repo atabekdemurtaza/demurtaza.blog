@@ -2,7 +2,6 @@ from rest_framework import generics
 from movies.models import Review, MovieList
 from movies.api.serializers import ReviewSerializer
 from rest_framework.validators import ValidationError
-from rest_framework.permissions import IsAuthenticated
 from movies.api import permissions
 
 
@@ -52,6 +51,16 @@ class ReviewCreate(generics.CreateAPIView):
 
         if review_queryset.exists():
             raise ValidationError('You have already reviewed this movie!')
+
+        if watchlist.number_rating == 0:
+            watchlist.avg_rating = serializer.validated_data['rating']
+        else:
+            watchlist.avg_rating = (
+                watchlist.avg_rating + watchlist.validated_data['rating']
+            ) / 2
+
+        watchlist.number_rating += 1
+        watchlist.save()
 
         serializer.save(
             watchlist=watchlist,
