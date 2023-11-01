@@ -5,6 +5,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import status
 from django.http import Http404
+# from rest_framework.permissions import IsAuthenticated
+from movies.api.permissions import AdminOrReadOnly
 
 
 class WatchListAPIView(APIView):
@@ -34,6 +36,8 @@ class WatchListAPIView(APIView):
 
 
 class WatchDetailAPIView(APIView):
+
+    permission_classes = [AdminOrReadOnly]
 
     def get(self, request, lookup):
         try:
@@ -109,6 +113,8 @@ class StreamListAPIView(APIView):
 
 
 class StreamDetailAPIView(APIView):
+
+    permission_classes = [AdminOrReadOnly]
 
     def get(self, request, lookup):
         if lookup.isdigit():

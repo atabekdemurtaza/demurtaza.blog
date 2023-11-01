@@ -32,17 +32,17 @@ urlpatterns = [
         name='stream-detail'
     ),
     path(
-        route='list/<lookup>/review/',
+        route='<lookup>/review/',
         view=ReviewList.as_view(),
         name='review-list'
     ),
     path(
-        route='list/<lookup>/review/<int:pk>/',
+        route='<lookup>/review/<int:pk>/',
         view=ReviewRetrieve.as_view(),
         name='review-retrieve'
     ),
     path(
-        route='list/<lookup>/create/',
+        route='<lookup>/create/',
         view=ReviewCreate.as_view(),
         name='review-create'
     ),

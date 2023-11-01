@@ -2,6 +2,8 @@ from rest_framework import generics
 from movies.models import Review, MovieList
 from movies.api.serializers import ReviewSerializer
 from rest_framework.validators import ValidationError
+from rest_framework.permissions import IsAuthenticated
+from movies.api import permissions
 
 
 class ReviewList(generics.ListAPIView):
@@ -20,6 +22,7 @@ class ReviewRetrieve(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+    permission_classes = [permissions.ReviewUserOrReadOnly]
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request=request, *args, **kwargs)

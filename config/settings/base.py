@@ -179,3 +179,9 @@ JET_THEMES = [
 # AUTH_USER_MODEL = 'movies.Review'
 
 LOGIN_REDIRECT_URL = ''
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
