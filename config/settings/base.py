@@ -37,12 +37,14 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     'movies.apps.MoviesConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 THIRD_PARTY_APPS = [
     'rosetta',
     'rest_framework',
     'django_extensions',
+    'rest_framework.authtoken',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
@@ -183,5 +185,10 @@ LOGIN_REDIRECT_URL = ''
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication'
     ]
 }

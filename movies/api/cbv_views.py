@@ -5,11 +5,12 @@ from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import status
 from django.http import Http404
-# from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from movies.api.permissions import AdminOrReadOnly
 
 
 class WatchListAPIView(APIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         movies = MovieList.objects.all()

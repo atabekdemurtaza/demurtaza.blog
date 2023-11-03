@@ -9,6 +9,7 @@ urlpatterns = [
     path(route='jet/', view=include('jet.urls', 'jet')),
     path(route='admin/', view=admin.site.urls),
     path(route='watch/', view=include('movies.api.urls')),
+    path(route='account/', view=include('accounts.api.urls')),
     path(route='rosetta/', view=include('rosetta.urls')),
     # path('', RedirectView.as_view(url='/movies/list', permanent=False)),
     path('', APIInfoView.as_view(), name='api-info'),
