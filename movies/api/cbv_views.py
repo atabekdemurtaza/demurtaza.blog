@@ -38,7 +38,7 @@ class WatchListAPIView(APIView):
 
 class WatchDetailAPIView(APIView):
 
-    permission_classes = [AdminOrReadOnly]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, lookup):
         try:

@@ -2,8 +2,9 @@ from rest_framework.decorators import api_view, permission_classes
 from .serializers import RegistrationSerializer
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.authtoken.models import Token
+# from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 @api_view(http_method_names=['POST'])
@@ -19,8 +20,16 @@ def registration_view(request):
             data['response'] = 'Registration Successful!'
             data['username'] = account.username
             data['email'] = account.email
-            token = Token.objects.get(user=account).key
-            data['token'] = token
+
+            # token = Token.objects.get(user=account).key
+            # data['token'] = token
+
+            refresh = RefreshToken.for_user(account)
+            data['token'] = {
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
+            }
+
             return Response(
                 data=data,
                 status=status.HTTP_201_CREATED
